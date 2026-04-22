@@ -442,7 +442,7 @@ export default function Checkout() {
                         type="text" 
                         name="full_name"
                         className="form-control"
-                        placeholder="Full Name"
+                        placeholder="Enter your name"
                         value={form.full_name}
                         onChange={handleChange}
                         required
@@ -454,7 +454,7 @@ export default function Checkout() {
                         type="text" 
                         name="phone"
                         className="form-control"
-                        placeholder="Phone Number"
+                        placeholder="Enter your phone number"
                         value={form.phone}
                         onChange={handleChange}
                         required
@@ -466,7 +466,7 @@ export default function Checkout() {
                         type="email" 
                         name="email"
                         className="form-control"
-                        placeholder="Email Address"
+                        placeholder="Enter your email"
                         value={form.email}
                         onChange={handleChange}
                       />
@@ -490,7 +490,7 @@ export default function Checkout() {
                         type="text" 
                         name="state"
                         className="form-control"
-                        placeholder="State"
+                        placeholder="Enter your state"
                         value={form.state}
                         onChange={handleChange}
                         required
@@ -502,7 +502,7 @@ export default function Checkout() {
                         type="text" 
                         name="city"
                         className="form-control"
-                        placeholder="City"
+                        placeholder="Enter your city"
                         value={form.city}
                         onChange={handleChange}
                         required
@@ -514,7 +514,7 @@ export default function Checkout() {
                         type="text" 
                         name="landmark"
                         className="form-control"
-                        placeholder="Area/Colony/Landmark"
+                        placeholder="Enter your area or landmark"
                         value={form.landmark}
                         onChange={handleChange}
                         required
@@ -526,7 +526,7 @@ export default function Checkout() {
                         type="text" 
                         name="pincode"
                         className="form-control"
-                        placeholder="Pincode"
+                        placeholder="Enter your pincode"
                         value={form.pincode}
                         onChange={handleChange}
                         required
@@ -538,7 +538,7 @@ export default function Checkout() {
                         name="address" 
                         className="form-control" 
                         rows="3" 
-                        placeholder="Street address, house number, building name, etc."
+                        placeholder="Enter your full address"
                         value={form.address} 
                         onChange={handleChange} 
                         required
@@ -552,6 +552,7 @@ export default function Checkout() {
                       name="order_notes" 
                       className="form-control" 
                       rows="3" 
+                      placeholder="Enter your order notes"
                       value={form.order_notes} 
                       onChange={handleChange}
                     ></textarea>

@@ -278,7 +278,7 @@ const ProductCard = ({ product }) => {
   );
 };
 
-const NewArrivalProducts = () => {
+const NewArrivalProducts = ({ limit, showViewAll = true, viewAllPath = "/new-arrivals" }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -338,6 +338,10 @@ const NewArrivalProducts = () => {
   if (!loading && (!products || products.length === 0)) {
     return null;
   }
+
+  const visibleProducts = Number.isInteger(limit) && limit > 0
+    ? products.slice(0, limit)
+    : products;
 
   return (
     <>
@@ -613,18 +617,20 @@ const NewArrivalProducts = () => {
         <div className="na-container">
           <div className="na-header">
             <div className="na-header-left">
-              <h3>New Arrival products</h3>
+              <h3>New Arrival Products</h3>
             </div>
-            <Link to="/products" style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "15px", fontWeight: "500", color: "#1a1a1a", textDecoration: "none", paddingBottom: "2px", borderBottom: "1.5px solid #1a1a1a", transition: "color 0.2s, border-color 0.2s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#b5956a"; e.currentTarget.style.borderColor = "#b5956a"; }} onMouseLeave={(e) => { e.currentTarget.style.color = "#1a1a1a"; e.currentTarget.style.borderColor = "#1a1a1a"; }}>
-              View All
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" /><polyline points="12 8 16 12 12 16" /><line x1="8" y1="12" x2="16" y2="12" />
-              </svg>
-            </Link>
+            {showViewAll && (
+              <Link to={viewAllPath} style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "15px", fontWeight: "500", color: "#1a1a1a", textDecoration: "none", paddingBottom: "2px", borderBottom: "1.5px solid #1a1a1a", transition: "color 0.2s, border-color 0.2s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#b5956a"; e.currentTarget.style.borderColor = "#b5956a"; }} onMouseLeave={(e) => { e.currentTarget.style.color = "#1a1a1a"; e.currentTarget.style.borderColor = "#1a1a1a"; }}>
+                View All
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" /><polyline points="12 8 16 12 12 16" /><line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+              </Link>
+            )}
           </div>
 
           <div className="na-grid">
-            {products.map((product) => (
+            {visibleProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

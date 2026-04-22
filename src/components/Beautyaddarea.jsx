@@ -70,7 +70,7 @@ const styles = `
     }
 
     .media-box {
-      height: 185px;
+      height: 230px;
     }
   }
 

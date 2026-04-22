@@ -35,6 +35,7 @@ import Dashboard from "./components/DashBoard";
 import CartPage from "./components/CartPage";
 import BestSellingProducts from "./components/BestSellingProducts";
 import NewArrivalProducts from "./components/NewArrivalProducts";
+import NewArrivalPage from "./components/NewArrivalPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Testimonials from "./components/Testimonials";
 // LoginRequiredPopup removed in favor of toasts
@@ -120,7 +121,7 @@ function App() {
                 <Beautyaddsection />
 
                 <Beautysection />
-                <NewArrivalProducts />
+                <NewArrivalProducts limit={8} />
                 {/* <PopularProducts /> */}
                 <Gen1EcoBanner />
                 <Testimonials />
@@ -133,6 +134,7 @@ function App() {
             <Route path="/products" element={<ProductListing />} />
             <Route path="/products/category/:categorySlug" element={<ProductListing />} />
             <Route path="/products/category/:categorySlug/:subCategorySlug" element={<ProductListing />} />
+            <Route path="/new-arrivals" element={<NewArrivalPage />} />
 
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />

@@ -255,7 +255,7 @@ export default function ProductDetailPage() {
 
   const dec = () => setQuantity((q) => Math.max(1, q - 1));
   const inc = () => setQuantity((q) => q + 1);
-  const shortDescription = stripHtml(product.short_description || "");
+  const shortDescription = product.short_description || "";
   const seoTitle = (product.seo_title || product.meta_title || product.page_title || product.product_name || "Product Details").trim();
   const seoDescription = truncateWords(
     stripHtml(product.seo_description || product.meta_description || product.short_description || product.description || ""),
@@ -498,6 +498,13 @@ export default function ProductDetailPage() {
         .product-desc-html ul, .product-desc-html ol { padding-left: 20px; margin-bottom: 10px; }
         .product-desc-html li { margin-bottom: 4px; }
         .product-desc-html br { line-height: 1.2; }
+        
+        .tagline { margin-bottom: 16px !important; }
+        .tagline p { margin-bottom: 8px; }
+        .tagline strong { font-weight: 600; color: #333; }
+        .tagline ul, .tagline ol { padding-left: 20px; margin-bottom: 8px; }
+        .tagline li { margin-bottom: 4px; }
+        .tagline br { line-height: 1.2; }
 
         .pd-hero .dc-hero__breadcrumb {
           max-width: min(92vw, 980px);
@@ -655,9 +662,7 @@ export default function ProductDetailPage() {
               )}
             </div>
             {shortDescription && (
-              <p className="tagline mb-2" style={{ textAlign: "justify" }}>
-                {shortDescription}
-              </p>
+              <div className="tagline mb-2" style={{ textAlign: "justify", fontSize: "16px", fontWeight: 400, lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: shortDescription }} />
             )}
 
             {variants.length > 1 ? (

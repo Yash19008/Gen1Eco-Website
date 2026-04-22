@@ -619,7 +619,7 @@ const BestSellingProducts = () => {
         <div className="bs-container">
           <div className="bs-header">
             <div className="bs-header-left">
-              <h3>Best Selling products</h3>
+              <h3>Best Selling Products</h3>
             </div>
             <Link to="/products" style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "15px", fontWeight: "500", color: "#1a1a1a", textDecoration: "none", paddingBottom: "2px", borderBottom: "1.5px solid #1a1a1a", transition: "color 0.2s, border-color 0.2s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#b5956a"; e.currentTarget.style.borderColor = "#b5956a"; }} onMouseLeave={(e) => { e.currentTarget.style.color = "#1a1a1a"; e.currentTarget.style.borderColor = "#1a1a1a"; }}>
               View All

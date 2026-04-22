@@ -157,12 +157,24 @@ export default function GuestCheckout() {
   };
 
   const calculateTotals = () => {
-    const subtotal = cart.reduce((sum, item) =>
-      sum + (getUnitPrice(item) * Number(item.qty || 1)), 0
-    );
-    const gst = Math.round(subtotal * 0.18); // 18% GST
-    const discount = appliedCoupon ? Number(appliedCoupon.discount_amount) || 0 : 0;
-    const total = subtotal + gst - discount;
+    const subtotal = cart.reduce((sum, item) => {
+      const unitPrice = getUnitPrice(item);
+      return sum + (unitPrice * Number(item.qty || 1));
+    }, 0);
+
+    const discount = Math.max(0, Number(appliedCoupon?.discount_amount) || 0);
+    const taxableSubtotal = Math.max(0, subtotal - discount);
+
+    const gst = cart.reduce((sum, item) => {
+      const unitPrice = getUnitPrice(item);
+      const itemSubtotal = unitPrice * Number(item.qty || 1);
+      const itemRatio = subtotal > 0 ? (itemSubtotal / subtotal) : 0;
+      const itemTaxableAmount = Math.max(0, itemSubtotal - (discount * itemRatio));
+      const gstPercent = Number(item.gst_percent ?? item.gstPercent ?? 0);
+      return sum + ((itemTaxableAmount * gstPercent) / 100);
+    }, 0);
+
+    const total = taxableSubtotal + gst;
     return { subtotal, gst, total, discount };
   };
 
@@ -587,7 +599,7 @@ export default function GuestCheckout() {
                             type="text"
                             name="name"
                             className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                            placeholder="John Doe"
+                            placeholder="Enter your name"
                             value={formData.name}
                             onChange={handleChange}
                             required
@@ -603,7 +615,7 @@ export default function GuestCheckout() {
                             type="tel"
                             name="phone"
                             className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
-                            placeholder="9217900925"
+                            placeholder="Enter your phone number"
                             value={formData.phone}
                             onChange={handleChange}
                             required
@@ -619,7 +631,7 @@ export default function GuestCheckout() {
                         type="email"
                         name="email"
                         className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                        placeholder="john@example.com"
+                        placeholder="Enter your email"
                         value={formData.email}
                         onChange={handleChange}
                         onBlur={handleEmailBlur}
@@ -640,7 +652,7 @@ export default function GuestCheckout() {
                         name="shipping_address"
                         className={`form-control ${errors.shipping_address ? 'is-invalid' : ''}`}
                         rows="3"
-                        placeholder="123 Main Street, Apt 4B"
+                        placeholder="Enter your full address"
                         value={formData.shipping_address}
                         onChange={handleChange}
                         required
@@ -656,7 +668,7 @@ export default function GuestCheckout() {
                             type="text"
                             name="city"
                             className={`form-control ${errors.city ? 'is-invalid' : ''}`}
-                            placeholder="Mumbai"
+                            placeholder="Enter your city"
                             value={formData.city}
                             onChange={handleChange}
                             required
@@ -672,7 +684,7 @@ export default function GuestCheckout() {
                             type="text"
                             name="landmark"
                             className="form-control"
-                            placeholder="Near School"
+                            placeholder="Enter your landmark"
                             value={formData.landmark}
                             onChange={handleChange}
                           />
@@ -688,7 +700,7 @@ export default function GuestCheckout() {
                             type="text"
                             name="state"
                             className={`form-control ${errors.state ? 'is-invalid' : ''}`}
-                            placeholder="Maharashtra"
+                            placeholder="Enter your state"
                             value={formData.state}
                             onChange={handleChange}
                             required
@@ -704,7 +716,7 @@ export default function GuestCheckout() {
                             type="text"
                             name="pincode"
                             className={`form-control ${errors.pincode ? 'is-invalid' : ''}`}
-                            placeholder="400001"
+                            placeholder="Enter your pincode"
                             value={formData.pincode}
                             onChange={handleChange}
                             required
@@ -720,7 +732,7 @@ export default function GuestCheckout() {
                             type="text"
                             name="country"
                             className="form-control"
-                            placeholder="India"
+                            placeholder="Enter your country"
                             value={formData.country}
                             onChange={handleChange}
                             required
@@ -739,7 +751,7 @@ export default function GuestCheckout() {
                         name="order_notes"
                         className="form-control"
                         rows="2"
-                        placeholder="e.g., Please deliver after 5 PM"
+                        placeholder="Enter your order notes"
                         value={formData.order_notes}
                         onChange={handleChange}
                       />
@@ -851,7 +863,7 @@ export default function GuestCheckout() {
                       <span>₹{subtotal.toLocaleString()}</span>
                     </div>
                     <div className="summary-row">
-                      <span>Tax (GST 18%):</span>
+                      <span>GST:</span>
                       <span>₹{gst.toLocaleString()}</span>
                     </div>
                     {discount > 0 && (
