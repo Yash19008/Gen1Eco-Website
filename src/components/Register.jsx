@@ -317,7 +317,7 @@ const styles = `
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1399px) {
-    .sign_in_img { width: 100%; }
+    // .sign_in_img { width: 100%; }
   }
 
   @media (max-width: 991px) {
@@ -449,7 +449,7 @@ export default function SignUpSection() {
             {/* ── Right Form ── */}
             <div className="col-xxl-5 col-lg-8 col-xl-6 col-md-10 wow fadeInRight">
               <div className="sign_in_form">
-                <h3>Sign Up to Continue 👋</h3>
+                <h3>Sign Up to Continue</h3>
 
                 {/* Alert */}
                 <div id="message">
@@ -471,7 +471,7 @@ export default function SignUpSection() {
                           type="text"
                           name="name"
                           id="name"
-                          placeholder="First name"
+                          placeholder="Enter your full name"
                           className={errors.name ? "is-invalid" : ""}
                           value={form.name}
                           onChange={(e) => handleChange("name", e.target.value)}
@@ -490,7 +490,7 @@ export default function SignUpSection() {
                           type="email"
                           name="email"
                           id="reg-email"
-                          placeholder="example@Zenis.com"
+                          placeholder="Enter your registered email address!"
                           className={errors.email ? "is-invalid" : ""}
                           value={form.email}
                           onChange={(e) => handleChange("email", e.target.value)}
@@ -509,7 +509,7 @@ export default function SignUpSection() {
                           type="text"
                           name="phone"
                           id="phone"
-                          placeholder="0000000000"
+                          placeholder="Enter your phone number"
                           className={errors.phone ? "is-invalid" : ""}
                           value={form.phone}
                           onChange={(e) => {
@@ -531,7 +531,7 @@ export default function SignUpSection() {
                             type="password"
                             name="password"
                             id="reg-password"
-                            placeholder="••••••••"
+                            placeholder="Enter your password!"
                             className={errors.password ? "is-invalid" : ""}
                             value={form.password}
                             onChange={(e) => handleChange("password", e.target.value)}
@@ -561,7 +561,7 @@ export default function SignUpSection() {
                             type="password"
                             name="confirm_password"
                             id="confirm_password"
-                            placeholder="••••••••"
+                            placeholder="Enter your password again!"
                             className={errors.confirm_password ? "is-invalid" : ""}
                             value={form.confirm_password}
                             onChange={(e) => handleChange("confirm_password", e.target.value)}

@@ -92,7 +92,7 @@ function ProductDescription({ fullDescription, reviews = [], reviewSummary = nul
 
         <hr className="section-sep" />
 
-        <div className="row">
+        {/* <div className="row">
           <div className="col-12 col-lg-10 col-xl-9">
             <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
               <h2 className="desc-title mb-0">Reviews</h2>
@@ -136,7 +136,7 @@ function ProductDescription({ fullDescription, reviews = [], reviewSummary = nul
               </div>
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -646,12 +646,12 @@ export default function ProductDetailPage() {
             </h1>
             <div className="d-flex align-items-center gap-3 mb-3">
               <span className="badge-stock">{stockCount > 0 ? "In Stock" : "Out of Stock"}</span>
-              <div className="d-flex align-items-center gap-2">
+              {/* <div className="d-flex align-items-center gap-2">
                   <StarRating rating={Math.round(Number(reviewSummary?.average_rating || 0)) || 0} />
                 <span className="text-muted" style={{ fontSize: "14px" }}>
                     ({reviewSummary?.total_reviews || 0} Reviews)
                 </span>
-              </div>
+              </div> */}
             </div>
             <div className="d-flex align-items-baseline gap-3 mb-1">
               <span className="price-current">₹{displayPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>

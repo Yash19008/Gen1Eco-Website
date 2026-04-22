@@ -194,7 +194,7 @@ const ProductCard = ({ product }) => {
 
         <ul className="fpc-badges">
           {product.discount > 0 && <li className="fpc-badge">-{product.discount}%</li>}
-          {product.inStock && <li className="fpc-badge">In Stock</li>}
+          {canAddToCart && <li className="fpc-badge">In Stock</li>}
         </ul>
 
         <ul className={`fpc-icons${hovered ? " fpc-icons--show" : ""}`}>
@@ -250,12 +250,12 @@ const ProductCard = ({ product }) => {
             )}
           </Link>
         </p>
-        <div className="fpc-stars">
+        {/* <div className="fpc-stars">
           {[...Array(5)].map((_, i) => (
             <FaStar key={i} size={16} color={i < getProductRatingStars(product) ? "#5e6266" : "#ddd"} />
           ))}
           <span className="fpc-reviews">({getProductReviewCount(product)} Reviews)</span>
-        </div>
+        </div> */}
         <CompactVariantSelector
           variants={variants}
           selectedVariantId={activeVariant?.id || null}

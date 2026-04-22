@@ -407,7 +407,7 @@ const styles = `
   .btn-send:disabled { opacity: 0.7; cursor: not-allowed; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 1399px) { .sign_in_img { width: 100%; } }
+  // @media (max-width: 1399px) { .sign_in_img { width: 100%; } }
 
   @media (max-width: 991px) {
     .sign_in_form { padding: 40px 30px; }
@@ -618,7 +618,7 @@ export default function SignInSection() {
             {/* Right Form */}
             <div className="col-xxl-4 col-lg-7 col-xl-6 col-md-10 wow fadeInRight">
               <div className="sign_in_form">
-                <h3>Sign In to Continue 👋</h3>
+                <h3>Sign In to Continue</h3>
 
                 {/* Alert */}
                 <div id="loginMessage">
@@ -638,7 +638,7 @@ export default function SignInSection() {
                           type="email"
                           name="email"
                           id="email"
-                          placeholder="example@Zenis.com"
+                          placeholder="Enter your registered email address!"
                           className={errors.email ? "is-invalid" : ""}
                           value={form.email}
                           onChange={(e) => handleChange("email", e.target.value)}
@@ -660,7 +660,7 @@ export default function SignInSection() {
                             type="password"
                             name="password"
                             id="password"
-                            placeholder="••••••••"
+                            placeholder="Enter your password!"
                             className={errors.password ? "is-invalid" : ""}
                             value={form.password}
                             onChange={(e) => handleChange("password", e.target.value)}
@@ -713,7 +713,7 @@ export default function SignInSection() {
                 </form>
 
                 <p className="dont_account">
-                  Already have an account?{" "}
+                  Don't have an account?{" "}
                   <a href="register">Register Now</a>
                 </p>
               </div>
