@@ -285,6 +285,18 @@ const Gen1EcoBanner = () => {
     @media (max-width: 768px) {
       .gen-eco-container { padding: 40px 20px; }
     }
+
+    @media (min-width: 1200px) {
+      .eco-right-text{
+        top: 73px;
+      }
+    }
+
+    @media (min-width: 900px) and (max-width: 1199px){
+      .eco-right-text{
+        top: 45px;
+      }
+    }
   `;
 
   // ✅ Loading state
