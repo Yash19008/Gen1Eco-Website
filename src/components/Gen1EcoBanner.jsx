@@ -215,6 +215,7 @@ const Gen1EcoBanner = () => {
     }
 
     .eco-swirl {
+      display: none;
       position: absolute;
       right: -2%;
       top: 50%;

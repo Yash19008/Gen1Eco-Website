@@ -347,9 +347,10 @@ const validatePhone = (phone) => /^[0-9]{10}$/.test(phone.replace(/\s/g, ""));
 
 
 function getPasswordStrength(pw) {
+  // Password must contain one uppercase letter, one lowercase letter, one number, and one special character. Minimum 8 characters.
   if (!pw) return null;
-  if (pw.length < 6) return "weak";
-  if (pw.length >= 6 && (!/[A-Z]/.test(pw) || !/[0-9]/.test(pw))) return "medium";
+  if (pw.length < 8) return "weak";
+  if (pw.length >= 8 && (!/[A-Z]/.test(pw) || !/[0-9]/.test(pw) || !/[!@#$%^&*()-+]/.test(pw))) return "medium";
   return "strong";
 }
 
@@ -377,7 +378,7 @@ export default function SignUpSection() {
     if (!form.phone) e.phone = "Phone number is required.";
     else if (!validatePhone(form.phone)) e.phone = "Please enter a valid 10-digit phone number.";
     if (!form.password) e.password = "Password is required.";
-    else if (form.password.length < 6) e.password = "Password must be at least 6 characters.";
+    else if (form.password.length < 8) e.password = "Password must be at least 8 characters.";
     if (!form.confirm_password) e.confirm_password = "Please confirm your password.";
     else if (form.password !== form.confirm_password) e.confirm_password = "Passwords do not match.";
     return e;
